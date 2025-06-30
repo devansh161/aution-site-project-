@@ -1,0 +1,679 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    letter-spacing: .6px;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #7E8082;
+}
+
+a:active {
+    cursor: wait;
+}
+
+/* -------------------inside menu by A.K---------------------------------------- */
+
+.inside_menu {
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    visibility: hidden;
+}
+
+.popUPOfInsideMenu {
+    visibility: visible;
+    position: fixed;
+    top: 0;
+}
+
+.inside_menu_navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12%;
+    width: 100%;
+    background-color: #1F2A52;
+    margin-bottom: 20px;
+}
+
+.inside_menu_navbar_img {
+    height: 50%;
+    width: 7%;
+    position: relative;
+    left: -40%;
+    color: white;
+    background-image: url('/static/Auctionly/images/logo.png');
+    background-size: cover;
+}
+
+.inside_menu_navbar_close {
+    font-size: 2.4rem;
+    color: black;
+    position: relative;
+    right: -41%;
+    color: grey;
+}
+
+.inside_menu_navbar_close:hover {
+    color: #b45156;
+    cursor: pointer;
+}
+
+.inside_menu_box {
+    margin-top: 2vh;
+    margin-left: 4vh;
+    display: flex;
+    height: 42vh;
+    width: 96%;
+}
+
+.inside_menu_boxes {
+    height: 100%;
+    width: 25%;
+    margin: 1px;
+    background-color: #EAEEF2;
+}
+
+.inside_menu_boxes h3 {
+    color: #B45156;
+}
+
+.inside_menu_boxes p {
+    position: relative;
+    top: 29px;
+    color: #7E8082;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+.inside_menu_boxes_content {
+    margin: 48px 6px 48px 48px;
+    height: 60%;
+    width: 80%;
+}
+
+.inside_menu_buttons {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top: 10%;
+
+}
+
+.inside_menu_buttons div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 216px;
+    border-radius: 5px;
+    padding: 0px 10px 0px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.inside_menu_buttons div a {
+    color: white;
+}
+
+.inside_menu_buttons div:hover {
+    cursor: pointer;
+}
+
+#inside_menu_signIn {
+    background: linear-gradient(to right, #b45156 0%, #e74b52 100%);
+}
+
+#inside_menu_space {
+    background-color: transparent;
+    width: 20%;
+    cursor: default;
+}
+
+/*********************ARNAV KA CSS ********************************** */
+
+.main-nav-bar {
+    position: fixed;
+    z-index: 1;
+    height: 82px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    background-color: transparent;
+    transition: background-color 0.4s ease;
+}
+
+.main-nav-contents {
+    left: 20%;
+    position: relative;
+    justify-items: center;
+}
+
+.main-nav-contents:hover {
+    color: #EC1B24;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+.main-nav-menu {
+    height: 100%;
+    background-color: #1F2A52;
+    color: #ffffff;
+    position: absolute;
+    right: 0;
+    width: 12.2vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    z-index: 0;
+}
+
+.main-nav-menu:hover {
+    cursor: pointer;
+
+}
+
+.main-nav-bar-logo {
+    height: 7vh;
+    width: 8vw;
+    position: absolute;
+    top: 1.5vh;
+    left: 4vw;
+    background-image: url('/static/Auctionly/images/logo.png');
+    background-size: cover;
+}
+
+.neela-dabba {
+    background-color: #1F2A52;
+    height: 85vh;
+    width: 39.7vw;
+    position: relative;
+    bottom: 82px;
+    z-index: -1;
+}
+
+.search-icon-navbar:hover {
+    border: 1px solid #EC1B24;
+    background-color: #EC1B24;
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.search-icon-navbar {
+    border: 1px solid transparent;
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 8px;
+    position: relative;
+    right: 1.5vw;
+}
+
+
+
+
+/* ----------------------------------Aneesh -styling for search box ------------------------------ */
+
+.modal-body-container {
+    background-color: rgb(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.popUPOfSearch {
+    visibility: visible;
+    position: fixed;
+    transform: scale(1);
+    top: 0;
+    left: 0%;
+    animation-name: ffff;
+    animation-duration: 0.1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+
+@keyframes ffff {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+#modal-body {
+    height: 100vh;
+    width: 40.3vw;
+    background-color: #EAEEF2;
+    padding: 30px 25px 30px 25px;
+    position: absolute;
+    right: 0;
+}
+
+#recent-search {
+    height: 12vh;
+    width: 36vw;
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 5vh;
+
+}
+
+#search {
+    height: 40px;
+    width: 551px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#search i {
+    position: absolute;
+    left: 2.5vw;
+    color: #A9AEB4;
+    font-size: larger;
+}
+
+#search p {
+    position: absolute;
+    right: 2.5vw;
+    font-size: 3rem;
+    color: #A9AEB4;
+
+}
+
+#search-here {
+    height: 7vh;
+    width: 36vw;
+    border-radius: 4px;
+    background-color: #EAEEF2;
+    border: none;
+    border-bottom: 1px dashed #C8B290;
+    outline: none;
+    text-indent: 4vw;
+    color: #A9AEB4;
+}
+
+#search-here:focus {
+    color: black;
+}
+
+#search p:hover {
+    cursor: pointer;
+    color: black;
+}
+
+
+/* ----------------------slides------------------------------------------ */
+
+.slide_container {
+    display: flex;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    height: 50vh;
+    width: 100vw;
+}
+
+.slide_container .slides {
+    height: 100%;
+    width: 36%;
+    position: absolute;
+    top: 6.7%;
+    left: 10.7%;
+    background-image: url('/static/Auctionly/images/jewellert.png');
+    background-size: cover;
+
+}
+
+.slide_container .slides_border {
+    height: 97%;
+    width: 29.5%;
+    position: relative;
+    left: 9.55%;
+    top: 1.6%;
+    z-index: -1;
+}
+
+.slide_container .slides_content {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 5%;
+    right: 0;
+    font-size: 1rem;
+
+}
+
+.slides_content h3 {
+    position: absolute;
+    top: 2%;
+    margin-left: 10%;
+    font-size: 3.125rem;
+    font-weight: 800;
+    letter-spacing: 0.88px;
+    color: #000;
+
+}
+
+.slides_content h6 {
+    position: absolute;
+    top: 27%;
+    margin-left: 10%;
+    font-size: 1rem;
+    color: #b45156;
+    font-weight: bold;
+}
+
+.para-department {
+    position: relative;
+    left: 10%;
+    top: 20vh;
+    letter-spacing: normal;
+    font-family: sans-serif;
+    color: #585858;
+    word-spacing: 3px;
+}
+
+
+
+
+
+/**********************FOOTER**********************************8*/
+
+.newsletter-box {
+    height: 34vh;
+    width: 100%;
+    position: relative;
+    top: 20vh;
+}
+
+.newsletter-box-contents {
+    height: 100%;
+    width: 90%;
+    background-color: #F3E8E9;
+    position: relative;
+    left: 5%;
+}
+
+.subscribe-text {
+    font-size: xx-large;
+    display: flex;
+    gap: 20px;
+    padding-top: 2.5%
+}
+
+.red-text-subscribe {
+    color: #b45156;
+    position: relative;
+    padding-left: 25%;
+    font-weight: 900;
+}
+
+.our-text-subscribe {
+    font-weight: 900;
+}
+
+
+.input-details-nl {
+    display: flex;
+    position: relative;
+    left: 15%;
+    top: 10%;
+}
+
+.wrapper {
+    width: 450px;
+    background: #F3E8E9;
+    padding: 30px;
+}
+
+.wrapper .input-data {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    background-color: #F3E8E9;
+}
+
+.wrapper .input-data input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+    background: #F3E8E9;
+    outline: none;
+}
+
+.input-data input:focus~label,
+.input-data input:valid~label {
+    transform: translateY(-20px);
+    font-size: 15px;
+}
+
+.wrapper .input-data label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: grey;
+    pointer-events: none;
+    transition: all 0.1s ease;
+
+}
+
+.input-data .underline {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+}
+
+.input-data .underline:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.1s ease;
+}
+
+.input-data input:focus~.underline:before,
+.input-data input:valid~.underline:before {
+    transform: scaleX(1);
+}
+
+.submit-button-letterbox {
+    height: 7vh;
+    width: 12%;
+    left: 45%;
+    position: relative;
+    top: 4vh;
+    font-weight: bolder;
+}
+
+.submit-button-letterbox:hover {
+    cursor: pointer;
+}
+
+.button-text {
+    background: linear-gradient(to right, #b45156 0%, #e74b52 100%);
+    color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    border-radius: 14px;
+    padding-left: 27%;
+}
+
+.neela-dabba-footer {
+    height: 110vh;
+    width: 100%;
+    background-color: #1F2A52;
+    position: relative;
+    z-index: -1;
+}
+
+.footer {
+    position: relative;
+    top: 30vh;
+    background-color: #1F2A52;
+    color: #ffffff;
+    padding: 40px 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.left-section {
+    width: 45%;
+}
+
+.left-section .logo {
+    margin-bottom: 20px;
+    height: 50px;
+    width: 150px;
+}
+
+.left-section p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-weight: lighter;
+}
+
+.social-icons img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+
+
+.app-links img {
+    width: 120px;
+    margin-right: 10px;
+    margin-top: 40px;
+}
+
+.right-section {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.column {
+    margin-right: 20px;
+}
+
+.column h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.column ul li {
+    margin-bottom: 10px;
+}
+
+.column ul li a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.column ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-buttons {
+    position: relative;
+}
+
+
+
+.footer-buttons:hover {
+    cursor: pointer;
+}
+
+
+#Intrested {
+    padding: 10px 10px;
+    font-size: 18px;
+    color: #333;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: color 0.4s ease;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+
+#Intrested:before,
+#Intrested:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(to right, #b45156 0%, #e74b52 100%);
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+#Intrested:before {
+    top: 0;
+    transform-origin: left;
+}
+
+#Intrested:after {
+    bottom: 0;
+    transform-origin: right;
+}
+
+#Intrested:hover:before,
+#Intrested:hover:after {
+    transform: scaleX(1);
+}
+
+#Intrested:hover {
+    color: black;
+}
+

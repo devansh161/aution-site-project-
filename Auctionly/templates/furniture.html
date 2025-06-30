@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture and Decorative Arts </title>
+    <style>
+        .shopping-sec {
+            width: 100%;
+            min-height: 1303px;
+            padding-top: 20px;
+            padding-bottom: 4vh;
+            background-color: #E2E7E6;
+            color: #000000;
+            font: 16px;
+            font-family: sans-serif;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+
+        #boxcontent {
+            width: 380px;
+            height: 400px;
+        }
+
+        #image1 {
+            width: 385px;
+            height: 360px;
+            border-radius: 3%;
+            margin-top: 10px;
+            margin-left: 10px;
+
+        }
+
+        #image2 {
+            margin-left: 5px;
+        }
+
+
+        #head {
+            font-size: 24px;
+            height: 20px;
+            width: 300px;
+            margin: 8px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            width: 450px;
+            height: 530px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #p1 {
+
+            font-size: 14px;
+            color: #555;
+            margin-top: 8px;
+            position: relative;
+
+        }
+
+        #p2 {
+
+            font-size: 14px;
+            color: #555;
+            margin-top: 8px;
+            position: relative;
+
+        }
+
+        .main-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            color: black;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-nav-bar-logo img {
+            height: 7vh;
+            width: 8vw;
+            object-fit: cover;
+        }
+
+        .main-nav-contents {
+            font-size: 1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .main-nav-contents a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .main-nav-contents:hover a {
+            text-decoration: underline;
+        }
+
+        .search-icon-navbar {
+            padding: 5px;
+        }
+
+        .main-nav-menu .main-nav-menu-contents {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-section .username {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .profile-section a {
+            color: #000;
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .profile-section a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        #Intrested {
+            padding: 10px 10px;
+            font-size: 25px;
+            color: #333;
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: color 0.4s ease;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        #Intrested:before,
+        #Intrested:after {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(to right, #b45156 0%, #e74b52 100%);
+            left: 0;
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        #Intrested:before {
+            top: 0;
+            transform-origin: left;
+        }
+
+        #Intrested:after {
+            bottom: 0;
+            transform-origin: right;
+        }
+
+        #Intrested:hover:before,
+        #Intrested:hover:after {
+            transform: scaleX(1);
+        }
+
+        #Intrested:hover {
+            color: black;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="{% static 'images/Logo (2).jpg' %}">
+    <link rel="stylesheet" href="{% static 'Auctionly/furniture.css' %}">
+</head>
+
+<body>
+    <div class="main-nav-bar" id="main-nav-bar">
+        <a href="{% url 'home' %}">
+            <div class="main-nav-bar-logo">
+                <img src="{% static 'Auctionly/images/logo.png' %}" alt="Auctionly Logo">
+            </div>
+        </a>
+      
+        <div class="main-nav-contents main-nav-contents3">
+            <a href="#">AUCTIONS <i class="fa-solid fa-caret-down"></i></a>
+        </div>
+        <div class="main-nav-contents profile-section">
+            {% if user.is_authenticated %}
+                <span class="username">Welcome, {{ user.username }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'sign_in' %}">Sign In</a>
+                <a href="{% url 'sign_up' %}">Sign Up</a>
+            {% endif %}
+        </div>
+        <div class="main-nav-contents">
+            <div class="search-icon-navbar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="user_profile">
+                <div class="nav-right">
+                    <div class="user-circle">
+                        <a href="">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-nav-menu">
+            <button id="main_page_menu_btn" class="main-nav-menu-contents">MENU <i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+
+    <div class="inside_menu">
+        <div class="inside_menu_navbar">
+            <div class="inside_menu_navbar_img"></div>
+            <div class="inside_menu_navbar_close">×</div>
+        </div>
+        <div class="inside_menu_box">
+            <div class="inside_menu_boxes" id="inside_menu_boxes1">
+                <div class="inside_menu_boxes_content">
+                    <h3>ABOUT US</h3>
+                    <a href="{% url 'aboutAuctionly' %}"><p>About Auctionly</p></a>
+                </div>
+            </div>
+            <div class="inside_menu_boxes" id="inside_menu_boxes2">
+                <div class="inside_menu_boxes_content">
+                    <h3>INSIGHTS</h3>
+                    <p><a href="{% url 'departmentAuctionly' %}">Catagory</a></p>
+                </div>
+            </div>
+            <div class="inside_menu_boxes" id="inside_menu_boxes3">
+                <div class="inside_menu_boxes_content">
+                    <h3>CONTACT US</h3>
+                    <a href="{% url 'contactUs' %}"><p>Contact Us</p></a><br>
+                    <p>How To Sell<br><br>How To Buy</p>
+                </div>
+            </div>
+            <div class="inside_menu_boxes" id="inside_menu_boxes4">
+                <div class="inside_menu_boxes_content">
+                    <h3>QUICK LINKS</h3>
+                    <p><a href="{% url 'liveauction' %}">Live Auctions</a><br><br>
+                       <a href="{% url 'upcomingauction' %}">Upcoming Auctions</a><br><br>
+                       <a href="{% url 'pastauction' %}">Past Auctions</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="inside_menu_buttons">
+            <div id="inside_menu_signIn">
+                {% if user.is_authenticated %}
+                    Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'sign_in' %}">SIGN IN</a> / <a href="{% url 'sign_up' %}">SIGN UP</a>
+                {% endif %}
+            </div>
+            <div id="inside_menu_appleStore">Apple Store</div>
+            <div id="inside_menu_playStore">Play Store</div>
+            <div id="inside_menu_space"></div>
+            <div id="inside_menu_contact"><a href="{% url 'contactUs' %}">CONTACT US</a></div>
+        </div>
+    </div>
+
+    <div class="neela-dabba"></div>
+
+    <div class="modal-body-container">
+        <div id="modal-body">
+            <div id="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-here" placeholder="Search...">
+                <p>×</p>
+            </div>
+            <div id="recent-search">
+                <h4 id="title">Your Recent Searches</h4>
+            </div>
+        </div>
+    </div>
+    
+
+    <!----------------------departments arnav----------------------------->
+
+    <div class="slide_container">
+        <div class="slides"><!-- About Us Image --></div>
+        <div class="slides_border"><!-- opacity waala border--></div>
+        <div class="slides_content">
+            <div class="department-heading-1">
+                <h3>Furniture and Decorative Arts</h3>
+            </div>
+            <div class="department-heading-2">
+                <h6 style="margin-top: 55px;">Furniture and Decorative Arts</h6>
+            </div>
+            <div class="para-department">
+                <p style="margin-top: 40px;">Explore a captivating collection of fine furniture and decorative arts, where timeless craftsmanship meets artistic expression. From elegant period pieces to distinctive decorative accents, each item is carefully selected for its character, history, and beauty. Perfect for collectors, interior enthusiasts, and those with an eye for the exceptional<br><br>
+
+                    Elevate your collection with these distinguished pieces that celebrate the enduring beauty of horology<br>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- the aneeeeeeeeeeeeeeeeeeeeessssssssssssssssssssshhhhhhhhhhhhhh  page of bids   -->
+
+    <div class="shopping-sec">
+
+
+        <div class="product-card">
+            <div id="boxcontent">
+                <h2 id="head">Four winged - dragon feet coffee table</h2>
+                <div id="image2">
+                    <img src="{% static 'Auctionly/images/furniture1.jpg' %}" style="margin-left: 28px;margin-top: 25px;" alt="MAitem1" id="image1">
+                </div>
+                <p id="p1">STARTING BID :</p>
+                <p id="p2">AUCTION END: </p>
+                <button id="Intrested">Intrested</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div id="boxcontent">
+                <h2 id="head">A Boulle Corner Cabinet</h2>
+                <div id="image2">
+                    <img src="{% static 'Auctionly/images/furniture7.jpg' %}" style="width: auto ; height:380px;margin-top: 5px;margin-left: 34px;"alt="MAitem2" id="image1">
+                </div>
+                <p id="p1">STARTING BID :</p>
+                <p id="p2">AUCTION END: </p>
+                <button id="Intrested">Intrested</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div id="boxcontent">
+                <h2 id="head">Rosewood,low height coffee table</h2>
+                <div id="image2">
+                    <img src="{% static 'Auctionly/images/furniture3.jpg' %}"style="width:350px ; height:300px;margin-top: 30px;margin-left: 45px;" alt="MAitem3" id="image1">
+                </div>
+                <p id="p1">STARTING BID :</p>
+                <p id="p2">AUCTION END: </p>
+                <button id="Intrested">Intrested</button>
+            </div>
+        </div>
+
+        <!-- this is another row  -->
+        <div class="product-card">
+            <div id="boxcontent">
+                <h2 id="head">Tourbillon Mystere Squelette</h2>
+                <div id="image2">
+                    <img src="{% static 'Auctionly/images/furniture4.jpg' %}" style="width: auto ; height:350px;margin-top: 30px;margin-left: 65px;" alt="MAitem4" id="image1">
+                </div>
+                <p id="p1">STARTING BID :</p>
+                <p id="p2">AUCTION END: </p>
+                <button id="Intrested">Intrested</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div id="boxcontent">
+                <h2 id="head">A Satsuma Jardiniere </h2>
+                <div id="image2">
+                    <img src="{% static 'Auctionly/images/furniture5.jpg' %}" style="width: auto ; height:350px;margin-top: 30px;margin-left: 65px;" alt="MAitem5" id="image1">
+                </div>
+                <p id="p1">STARTING BID :</p>
+                <p id="p2">AUCTION END: </p>
+                <button id="Intrested">Intrested</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div id="boxcontent">
+                <h2 id="head">Chinese Style Ormolu</h2>
+                <div id="image2">
+                    <img src="{% static 'Auctionly/images/furniture6.jpg' %}" style="width: auto ; height:350px;margin-top: 30px;margin-left: 65px;" alt="MAitem6" id="image1">
+                </div>
+                <p id="p1">STARTING BID :</p>
+                <p id="p2">AUCTION END: </p>
+                <button id="Intrested">Intrested</button>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="aise-hee-scroll-wala"></div>
+    <!-------------footer----------------------------->
+    <br><br><br><br>
+    <div class="newsletter-box">
+        <div class="newsletter-box-contents">
+            <div class="subscribe-text">
+                <div class="red-text-subscribe">
+                    SUBSCRIBE TO
+                </div>
+                <div class="our-text-subscribe">
+                    OUR NEWSLETTTER
+                </div>
+            </div>
+            <div class="input-details-nl">
+                <div class="wrapper">
+                    <div class="input-data">
+                        <input type="text" required>
+                        <div class="underline"></div>
+                        <label>Name</label>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="input-data">
+                        <input type="text" required>
+                        <div class="underline"></div>
+                        <label>Email</label>
+                    </div>
+                </div>
+            </div>
+            <div class="submit-button-letterbox">
+                <div class="button-text">
+                    SUBMIT
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="neela-dabba-footer">
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="left-section">
+                    <img src="{%static 'Auctionly/images/logo.png'%}" alt="Company logaaaaa" class="logo">
+                    <p>Auctionly, with its 1 month of pioneering experience in the Online Auction industry. Explore
+                        products ranging from fine writing instruments, jewelry, textiles, art, and more.</p>
+                    <p>The online auction is set to foster collaboration and open doors to exciting new possibilities in
+                        the world of gifting.</p><br>
+                    <div class="social-icons">
+                        <div class="follow-us-on-text">FOLLOW US ON</div><br>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i><br>
+                    </div><br><br>
+                    <div class="app-links">
+                        <div class="follow-us-on-text">DOWNLOAD OUR APP</div><br>
+                        <i class="fa-brands fa-apple"></i>&nbsp;&nbsp;Apple Store&nbsp; |&nbsp;&nbsp;
+                        <i class="fa-brands fa-google-play"></i>&nbsp;&nbsp;&nbsp;Play Store
+                    </div>
+                </div>
+
+                <div class="right-section">
+                    <div class="column">
+                        <h3>KNOW MORE</h3><br><br>
+                        <ul>
+                            <div class="footer-buttons">
+                                <li><a href="#">Buy </a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Sell</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">FAQs</a></li><br>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>DEPARTMENTS</h3><br><br>
+                        <ul>
+                            <div class="footer-buttons">
+                                <li><a href="modernart.html">Modern Indian Art</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Jewellery</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Furniture And Decorative Arts</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Arts</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Timepieces</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Automobiles</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Rare Books And Manuscripts</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Memorabilia</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Textiles</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Fine Writing Instruments</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Property</a></li><br>
+                            </div>
+                            <div class="footer-buttons">
+                                <li><a href="#">Luxury</a></li><br>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>ABOUT</h3><br><br>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    {% load static %}
+
+    <script src="{% static 'Auctionly/modernart.js' %}"></script>
+    <script src="{% static 'Auctionly/javascriptAtul.js' %}"></script>
+
+
+
+
+
+</body>
+
+</html>

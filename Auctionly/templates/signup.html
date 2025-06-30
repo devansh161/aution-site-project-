@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    letter-spacing: .6px;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+
+.login_main_box{
+    height: 93vh;
+    width: 59vw;
+    background-image: url('/static/Auctionly/images/login_background.png');
+    background-size: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 16px 50px 16px;
+}
+
+.adjust_login_main_box{
+    height: 97vh;
+    width: 50vw;
+    position: absolute;
+}
+
+#login_pswd{
+    padding-right: 20px;
+}
+
+.login_comp_img{
+    position: absolute;
+    left: 5%;
+    height: 7vh;
+    width: 8vw;
+    background-color: rgb(0, 0, 0, 0.6);
+    background-image: url('/static/Auctionly/images/logo.png');
+    background-size: cover;
+}
+
+
+.login_content{
+    height: 65vh;
+    width: 64.5%;
+    padding: 0px 12px 0px 12px;
+    margin-left: 26%;
+}
+
+.adjust_login_content_createAcc{
+    height: 83vh;
+    margin-left: 28%;
+}
+
+#login_content_description{
+    color: #585858;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .6px;
+}
+
+#login_close{
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    font-size: 25px;
+    color: #585858;
+    cursor: pointer;
+}
+
+.login_content_heading{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    top: 50px;
+    z-index: 1;
+}
+
+.login_content_heading button{
+    text-align: center;
+    width: 234px;
+    height: 37px;
+    background-color: transparent;
+    border: none;
+    color: #2d2d2d;
+    border-bottom: 2px solid #e74b52;
+    cursor: pointer;
+}
+
+#for_input_margin{
+    margin-bottom: 25px;
+}
+
+form .input_formatting{
+    border: none;
+    height: 8.5vh;
+    width: 100%;
+    font-size: 16px;
+    position: relative;
+    top: 80px;
+    background-color: #ffffff;
+    margin-bottom:10px ;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    text-indent:35px ;
+}
+
+#login_checkbox{
+    position: relative;
+    top: 15vh;
+}
+
+form input:focus{
+    border: none;
+    outline: none;
+}
+
+.login_button_div{
+    position: relative;
+    top: 115px;
+    height: 117px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+#login_button{
+    height: 50px;
+    width: 270px;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 30px 0px 30px;
+    color: #ffffff;
+    font-weight: 600;
+    background: linear-gradient(to right, #b45156 0%, #e74b52 100%);
+    cursor: pointer;
+}
+
+#otp{
+    position: relative;
+    top: 140px;
+    left: -5px;
+    color: #2d2d2d;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: .7px;
+    z-index: 1;
+}
+
+#otp a{
+    text-decoration: underline;
+    color: royalblue;
+}
+
+.alert-info{
+    text-align: center;
+    position: relative;
+    top: -2vh;
+    text-decoration:red underline;
+}
+
+
+/* Container */
+.google-signin-container {
+    position: relative;
+    top: 22vh;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* Button Styles - Makes entire area clickable */
+.google-signin-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #3c4043;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid #dadce0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: auto;
+    min-width: 220px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.google-signin-button:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Icon Styles */
+.google-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+}
+
+/* Text Styles */
+.google-button-text {
+    white-space: nowrap;
+}
+
+    </style>
+</head>
+<body>
+    {% load socialaccount %}
+    <div class="atul_login_box">
+        <div class="login_main_box" id="login_main_box">
+            <!-- logo text img -->
+            <div class="login_comp_img"></div>
+            <!-- login content -->
+            <div class="login_content">
+                <span id="login_content_description">Sign up to get started</span>
+                <i class="fa-solid fa-xmark" id="login_close"></i>
+                <div class="login_content_heading">
+                    <button class="login_content_heading1">CREATE AN ACCOUNT</button>
+                </div>
+                
+
+                <!-- create acc -->
+                <div class="createAcc_box">
+                    
+                    <form class="form_for_createAcc" method="post">
+                        {% csrf_token %}
+
+                        {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-info">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                        <input class="input_formatting" id="for_input_margin_createAcc" type="text" name="username" placeholder="Username (lowercase, no spaces)" required
+                            pattern="^[a-z0-9_]+$"
+                            title="Username must be lowercase with no spaces (only a-z, 0-9, _ allowed)">
+
+                        <input class="input_formatting" id="for_input_margin_createAcc" type="email" name="email" placeholder="Email" required 
+                               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+                               title="Please enter a valid email (e.g., user@example.com)">
+
+                        <input class="input_formatting" id="login_pswd" type="password" name="password" placeholder="Set Password" required
+                               pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$" 
+                               title="Password must contain: 1 uppercase, 1 special char, 1 number, and be at least 8 chars long">
+
+                        <input style="margin-left: 5px;" id="login_checkbox" type="checkbox" required>&nbsp;<span id="login_checkbox">I agree to the <a href="#" style="color: blue;">Terms & Conditions</a></span>
+
+                        <p id="otp">Already have an account. <a href="sign_in">Sign In</a></p> 
+
+                        <!-- Add this just before the login_button_div -->
+                        <div class="google-signin-container">
+                            <a href="{% provider_login_url 'google' process='login' next='/' %}" class="google-signin-button">
+                                <img src="{% static 'Auctionly/images/Google_Icons-09-512.webp' %}" 
+                                     alt="Google" 
+                                     class="google-icon">
+                                <span class="google-button-text">Sign up with Google</span>
+                            </a>
+                        </div>
+
+
+
+
+                        <div class="login_button_div">
+                            <button id="login_button">GET STARTED</button>
+                        </div>
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const emailInput = document.querySelector('input[type="email"]');
+    const passwordInput = document.querySelector('input[type="password"]');
+    const usernameInput = document.querySelector('input[name="username"]');
+    const form = document.querySelector('form'); // Ensure your inputs are inside a <form>
+
+    // Automatically convert input to lowercase and remove spaces
+    usernameInput.addEventListener('input', function() {
+        this.value = this.value.toLowerCase().replace(/\s/g, '');
+    });
+
+    // Prevent invalid characters from being entered
+    usernameInput.addEventListener('keypress', function(e) {
+        const char = String.fromCharCode(e.keyCode || e.which);
+        if (!/^[a-z0-9_]$/.test(char)) {
+            e.preventDefault();
+        }
+    });
+    
+    
+    // Email Validation
+    emailInput.addEventListener('input', function() {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(emailInput.value)) {
+            emailInput.setCustomValidity("Please enter a valid email (e.g., user@example.com)");
+        } else {
+            emailInput.setCustomValidity("");
+        }
+    });
+
+    // Password Validation
+    passwordInput.addEventListener('input', function() {
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$/;
+        if (!passwordRegex.test(passwordInput.value)) {
+            passwordInput.setCustomValidity(
+                "Password must contain:\n- 1 uppercase letter\n- 1 special character\n- 1 number\n- At least 8 characters"
+            );
+        } else {
+            passwordInput.setCustomValidity("");
+        }
+    });
+
+    
+
+    // Form Submission (Optional: Prevent default for AJAX)
+    form.addEventListener('submit', function(e) {
+        if (!emailInput.checkValidity() || !passwordInput.checkValidity()) {
+            e.preventDefault(); // Stop form submission if invalid
+            alert("Please correct the errors before submitting.");
+        }
+    });
+});
+    </script>
+</body>
+</html>

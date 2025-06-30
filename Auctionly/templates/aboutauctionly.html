@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auctionly/About Us</title>
+    <style>
+        .main-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            color: black;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .main-nav-bar-logo img {
+            height: 7vh;
+            width: 8vw;
+            object-fit: cover;
+        }
+        .main-nav-contents {
+            font-size: 1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .main-nav-contents a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* Dropdown links */
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        /* Hover effect on dropdown links */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Show dropdown on hover */
+        .main-nav-contents:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Caret icon animation */
+        .fa-caret-down {
+            transition: transform 0.3s;
+            margin-left: 5px;
+        }
+
+        .main-nav-contents:hover .fa-caret-down {
+            transform: rotate(180deg);
+        }
+
+
+        .search-icon-navbar {
+            padding: 5px;
+        }
+        .main-nav-menu .main-nav-menu-contents {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .profile-section .username {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .profile-section a {
+            color: #000;
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .profile-section a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="{%static 'images/mainLogo (2).jpg'%}">
+    <link rel="stylesheet" href="{% static 'Auctionly/aboutAuctionly.css' %}">
+</head>
+<body>
+
+
+    <div class="main-nav-bar" id="main-nav-bar">
+        <a href="{% url 'home' %}">
+            <div class="main-nav-bar-logo">
+                <!-- <img src="{% static 'Auctionly/images/logo.png' %}" alt="Auctionly Logo"> -->
+            </div>
+        </a>
+        <div class="main-nav-contents main-nav-contents3">
+            <a href="#">EXHIBITION</a>
+        </div>
+        <div class="main-nav-contents main-nav-contents3">
+            AUCTIONS <i class="fa-solid fa-caret-down"></i>
+            <!-- Dropdown Content -->
+            <div class="dropdown-content">
+                <a href="{% url 'upcomingauction' %}">Upcoming Auctions</a>
+                <a href="{% url 'liveauction' %}">Live Auctions</a>
+                <a href="{% url 'pastauction' %}">Past Auctions</a>
+            </div>
+        </div>
+        <div class="main-nav-contents profile-section">
+            {% if user.is_authenticated %}
+                <span class="username">Welcome, {{ user.username }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'sign_in' %}">Sign In</a>
+                <a href="{% url 'sign_up' %}">Sign Up</a>
+            {% endif %}
+        </div>
+        <div class="main-nav-contents">
+            <div class="search-icon-navbar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <div class="main-nav-menu">
+            <button id="main_page_menu_btn" class="main-nav-menu-contents">MENU <i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+
+    <div class="inside_menu">
+        <div class="inside_menu_navbar">
+            <div class="inside_menu_navbar_img"></div>
+            <div class="inside_menu_navbar_close">×</div>
+        </div>
+        <div class="inside_menu_box">
+            <div class="inside_menu_boxes" id="inside_menu_boxes1">
+                <div class="inside_menu_boxes_content">
+                    <h3>ABOUT US</h3>
+                    <a href="{% url 'aboutAuctionly' %}"><p>About Auctionly</p></a>
+                </div>
+            </div>
+            <div class="inside_menu_boxes" id="inside_menu_boxes2">
+                <div class="inside_menu_boxes_content">
+                    <h3>INSIGHTS</h3>
+                    <p><a href="{% url 'departmentAuctionly' %}">Department</a></p>
+                </div>
+            </div>
+            <div class="inside_menu_boxes" id="inside_menu_boxes3">
+                <div class="inside_menu_boxes_content">
+                    <h3>CONTACT US</h3>
+                    <a href="{% url 'contactUs' %}"><p>Contact Us</p></a><br>
+                    <p>How To Sell<br><br>How To Buy</p>
+                </div>
+            </div>
+            <div class="inside_menu_boxes" id="inside_menu_boxes4">
+                <div class="inside_menu_boxes_content">
+                    <h3>QUICK LINKS</h3>
+                    <p><a href="{% url 'liveauction' %}">Live Auctions</a><br><br>
+                       <a href="{% url 'upcomingauction' %}">Upcoming Auctions</a><br><br>
+                       <a href="{% url 'pastauction' %}">Past Auctions</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="inside_menu_buttons">
+            <div id="inside_menu_signIn">
+                {% if user.is_authenticated %}
+                    Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'sign_in' %}">SIGN IN</a> / <a href="{% url 'sign_up' %}">SIGN UP</a>
+                {% endif %}
+            </div>
+            <div id="inside_menu_appleStore">Apple Store</div>
+            <div id="inside_menu_playStore">Play Store</div>
+            <div id="inside_menu_space"></div>
+            <div id="inside_menu_contact"><a href="{% url 'contactUs' %}">CONTACT US</a></div>
+        </div>
+    </div>
+
+    <div class="neela-dabba"></div>
+
+    <div class="modal-body-container">
+        <div id="modal-body">
+            <div id="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-here" placeholder="Search...">
+                <p>×</p>
+            </div>
+            <div id="recent-search">
+                <h4 id="title">Your Recent Searches</h4>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------About Us By A.K-------------------------------------------1 -->
+
+
+    <div class="slide_container">
+        <div class="slides"><!-- About Us Image --></div>
+        <div class="slides_border"><!-- opacity waala border--></div>
+        <div class="slides_content">
+            <h3>ABOUT US</h3>
+            <h6>WHO WE ARE</h6>
+        </div>
+    </div>
+
+    <div class="who_we_are1">
+        <span>01 <div></div></span>
+        <h3>WHO WE ARE</h3>
+        <p>
+            Our selection is characterised by limited edition, special niche objects that are truly one of a kind.
+            At the heart of this process lies a commitment to unearth and present items of exceptional rarity, significance, and value.
+            <br><br>
+            Ultimately, the curation process aims to create a collection that embodies exclusivity and quality.
+            It's a delicate balance between preserving history, promoting artistry, and satisfying the desires of collectors seeking items that transcend the ordinary.
+            <br><br>
+            The result is a curated assemblage of limited edition and rare collectibles for those who seek quality, exclusivity, and the joy of owning exceptional pieces.
+            <br><br>
+            We invite you to join us on this exciting journey where tradition meets innovation, and the world of gifting is redefined.
+            Welcome to the future of gifting at Auctionly Platform—where rarity, beauty, and history converge to create a world of extraordinary possibilities.
+        </p>
+    </div>
+
+    <div class="who_we_are1" id="who_we_are2">
+        <span><div></div>&nbsp;&nbsp;&nbsp;02</span>
+        <h3>CULTURE AT AUCTIONLY</h3>
+        <p>
+            Our selection is characterised by limited edition, special niche objects that are truly one of a kind. At the heart of <br>this process lies a commitment to unearth and present items of exceptional rarity, significance, and value.
+            <br><br>
+            Ultimately, the curation process aims to create a collection that embodies exclusivity and quality. It's a delicate <br>balance between preserving history, promoting artistry, and satisfying the desires of collectors seeking items <br> that transcend the ordinary.
+            <br><br>
+            The result is a curated assemblage of limited edition and rare collectibles for those who seek quality, exclusivity, <br> and the joy of owning exceptional pieces.
+            <br><br>
+            We invite you to join us on this exciting journey where tradition meets innovation, and the world of gifting is <br>redefined. Welcome to the future of gifting at Auctionly Platform—where rarity, beauty, and history converge <br>to create a world of extraordinary possibilities.
+        </p>
+    </div>
+
+    <div class="who_we_are_blueBox">
+        <img src="{%static 'Auctionly/images/quote-icon.png'%}">
+    </div>
+    
+    <div class="our_values">
+        <div>
+            <img src="{%static 'Auctionly/images/quote-icon-left.png'%}">
+        </div>
+        <div class="blue_box">
+            <span>03<div></div></span>
+            <h3>OUR VALUES</h3>
+        </div>
+        <p>
+            <i class="fa-solid fa-chevron-right"></i>The result is a curated assemblage of limited edition and rare
+             collectibles for
+             &nbsp;&nbsp;those who seek quality, exclusivity,
+             and the joy of owning exceptional pieces.
+            <br><br><br>
+            <i class="fa-solid fa-chevron-right"></i>We invite you to join us on this exciting journey where tradition
+             meets innovation, &nbsp;&nbsp;and the world of gifting is redefined.
+             Welcome to the future of gifting at Auctionly &nbsp;&nbsp;Platform—where rarity, beauty,
+              and history converge to create a world of &nbsp;&nbsp;extraordinary possibilities.
+        </p>
+    </div>
+
+    <!--------------------------------------------- Officials by A.k --------------------------------->
+
+    <div class="founders">
+        <div class="founder_header">
+        <div id="line1"><!--line1--></div><h3>FOUNDERS</h3><div id="line2"><!--line2--></div>
+        </div>
+        <div class="founders_box">
+
+            <div class="founders_info">
+                <div class="founders_info_photo" id="chairman_pic"></div>
+                <div class="founders_details">
+                    <span class="founders_name">Arnav Chauhan</span><br>
+                    <span class="founders_post">Chairman</span><br><br><br>
+                    <i class="fa-solid fa-envelope"></i><br>
+                    <span class="founders_email">admin@auctionly.in</span>
+                </div>
+                <div class="founders_info_blu_box"></div>
+            </div>
+
+            <div class="founders_info">
+                <div class="founders_info_photo" id="ceo_photo"></div>
+                <div class="founders_details">
+                    <span class="founders_name">Atul Kumar Gupta</span><br>
+                    <span class="founders_post">CEO</span><br><br><br>
+                    <i class="fa-solid fa-envelope"></i><br>
+                    <span class="founders_email">admin@auctionly.in</span>
+                </div>
+                <div class="founders_info_blu_box"></div>
+            </div>
+
+            <div class="founders_info">
+                <div class="founders_info_photo" id="coo_photo"></div>
+                <div class="founders_details">
+                    <span class="founders_name">Aneesh Ranhotra</span><br>
+                    <span class="founders_post">COO</span><br><br><br>
+                    <i class="fa-solid fa-envelope"></i><br>
+                    <span class="founders_email">admin@auctionly.in</span>
+                </div>
+                <div class="founders_info_blu_box"></div>
+            </div>
+        </div>
+    </div>
+
+
+<!-------------footer arnav----------------------------->
+    <br><br><br><br>
+    <div class="newsletter-box">
+        <div class="newsletter-box-contents">
+            <div class="subscribe-text">    
+                <div class="red-text-subscribe">
+                    SUBSCRIBE TO
+                </div>
+                <div class="our-text-subscribe">
+                    OUR NEWSLETTTER
+                </div>
+            </div>
+            <div class="input-details-nl">
+                <div class="wrapper">
+                    <div class="input-data">
+                       <input type="text" required>
+                       <div class="underline"></div>
+                       <label>Name</label>
+                    </div>
+                 </div>
+
+                 <div class="wrapper">
+                    <div class="input-data">
+                       <input type="text" required>
+                       <div class="underline"></div>
+                       <label>Email</label>
+                    </div>
+                 </div>
+            </div>
+            <div class="submit-button-letterbox">
+                <div class="button-text">
+                    SUBMIT
+                </div>
+            </div>  
+        </div>
+    </div>
+
+
+    <div class="neela-dabba-footer">
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="left-section">
+                    <img src="{%static 'Auctionly/images/logo.png'%}" alt="Company logaaaaa" class="logo">
+                    <p>Auctionly, with its 37 years of pioneering experience in the gifting industry is launching its first online auction. Explore products ranging from fine writing instruments, jewelry, textiles, art, and more.</p>
+                    <p>The online auction is set to foster collaboration and open doors to exciting new possibilities in the world of gifting.</p><br>
+                    <div class="social-icons">
+                        <div class="follow-us-on-text">FOLLOW US ON</div><br>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i><br>
+                    </div><br><br>
+                    <div class="app-links">
+                        <div class="follow-us-on-text">DOWNLOAD OUR APP</div><br>
+                        <i class="fa-brands fa-apple"></i>&nbsp;&nbsp;Apple Store&nbsp; |&nbsp;&nbsp;
+                        <i class="fa-brands fa-google-play"></i>&nbsp;&nbsp;&nbsp;Play Store
+                    </div>
+                </div>
+            
+                <div class="right-section">
+                    <div class="column">
+                        <h3>KNOW MORE</h3><br><br>
+                        <ul>
+                            <div class="footer-buttons"><li><a href="#">Buy </a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Sell</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">FAQs</a></li><br></div>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>DEPARTMENTS</h3><br><br>
+                        <ul>
+                            <div class="footer-buttons"><li><a href="#">Modern Indian Art</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Jewellery</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Furniture And Decorative Arts</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Arts</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Timepieces</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Numismatics And Philately</a></li><br></div>                        
+                            <div class="footer-buttons"><li><a href="#">Rare Books And Manuscripts</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Memorabilia</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Textiles</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Fine Writing Instruments</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Silver</a></li><br></div>
+                            <div class="footer-buttons"><li><a href="#">Luxury</a></li><br></div>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>ABOUT</h3><br><br>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="{% static 'Auctionly/aboutAuctionly.js' %}"></script>
+</body>
+</html>
